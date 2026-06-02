@@ -1,0 +1,51 @@
+==============================================================
+  COMO RECUPERAR O GRUB - Lenovo Yoga Slim 7 14IMH9
+  Multi-boot: Garuda Mokka/Sway, Windows 11, Arch ML4W, CachyOS, NixOS
+==============================================================
+
+Voce tem o script de recuperacao em dois lugares:
+
+  1. No pendrive Ventoy, na pasta /Scripts/
+  2. No GitHub: https://github.com/Spyke2022/GRUB_Lenovo
+
+--------------------------------------------------------------
+QUANDO USAR
+--------------------------------------------------------------
+
+Se o Windows ou uma atualizacao quebrar o boot novamente
+(tela preta, GRUB sumiu, ou alguma distro parou de aparecer),
+basta bootar no Garuda Mokka e rodar o script.
+
+--------------------------------------------------------------
+COMO RODAR
+--------------------------------------------------------------
+
+    sudo bash /caminho/restaurar-grub.sh
+
+Exemplos de caminho:
+  - Do pendrive:  sudo bash /mnt/ventoy/Scripts/restaurar-grub.sh
+  - Do GitHub:    sudo bash ~/GRUB_Lenovo/restaurar-grub.sh
+
+--------------------------------------------------------------
+O QUE O SCRIPT FAZ
+--------------------------------------------------------------
+
+  - Reinstala o GRUB na EFI
+  - Detecta automaticamente o hash atual do NixOS
+    (que muda a cada nixos-rebuild)
+  - Recria as 6 entradas na ordem certa
+  - Regenera o grub.cfg
+  - Ajusta a ordem de boot na UEFI (Garuda como primeiro)
+
+--------------------------------------------------------------
+ORDEM DO MENU DO GRUB
+--------------------------------------------------------------
+
+  1. Garuda Mokka   (padrao)
+  2. Garuda Sway
+  3. Windows 11
+  4. Arch ML4W OS
+  5. CachyOS
+  6. NixOS 25.11
+
+==============================================================
