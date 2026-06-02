@@ -1,16 +1,46 @@
 #!/bin/sh
 exec tail -n +3 $0
-# This file provides an easy way to add custom menu entries.
 
-menuentry 'Garuda Linux (Sway)' --class garuda --class gnu-linux --class gnu --class os {
+menuentry "Garuda Mokka" --class garuda --class gnu-linux --class gnu --class os {
     insmod part_gpt
     insmod btrfs
-    search --no-floppy --fs-uuid --set=root 8bd3f167-6c5c-4577-ab47-9965d1964e7f
-    echo 'Carregando Garuda Sway...'
-    linux /@/boot/vmlinuz-linux-zen root=UUID=8bd3f167-6c5c-4577-ab47-9965d1964e7f rw rootflags=subvol=@ loglevel=3 quiet nowatchdog
+    search --no-floppy --fs-uuid --set=root c3430b0b-797e-4687-b4d2-3ef0cc2c07b7
+    echo "Carregando Garuda Mokka..."
+    linux /@/boot/vmlinuz-linux-zen root=UUID=c3430b0b-797e-4687-b4d2-3ef0cc2c07b7 rw rootflags=subvol=@ loglevel=3 quiet
     initrd /@/boot/initramfs-linux-zen.img
 }
 
+menuentry "Garuda Sway" --class garuda --class gnu-linux --class gnu --class os {
+    insmod part_gpt
+    insmod btrfs
+    search --no-floppy --fs-uuid --set=root 8bd3f167-6c5c-4577-ab47-9965d1964e7f
+    echo "Carregando Garuda Sway..."
+    linux /@/boot/vmlinuz-linux-zen root=UUID=8bd3f167-6c5c-4577-ab47-9965d1964e7f rw rootflags=subvol=@ loglevel=3 quiet
+    initrd /@/boot/initramfs-linux-zen.img
+}
+
+menuentry "Windows 11" --class windows --class os {
+    insmod part_gpt
+    insmod fat
+    search --no-floppy --fs-uuid --set=root D8D9-D120
+    chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}
+
+menuentry "Arch ML4W OS" --class arch --class gnu-linux --class gnu --class os {
+    insmod part_gpt
+    insmod ext2
+    search --no-floppy --fs-uuid --set=root d5262ca6-bff8-463b-aac4-d9ec3a075bec
+    linux /boot/vmlinuz-linux root=UUID=d5262ca6-bff8-463b-aac4-d9ec3a075bec rw loglevel=3 quiet
+    initrd /boot/initramfs-linux.img
+}
+
+menuentry "CachyOS" --class gnu-linux --class gnu --class os {
+    insmod part_gpt
+    insmod btrfs
+    search --no-floppy --fs-uuid --set=root 04a870a5-6127-4bdb-9bf0-53df5018c37e
+    linux /@/boot/vmlinuz-linux-cachyos root=UUID=04a870a5-6127-4bdb-9bf0-53df5018c37e rw rootflags=subvol=@ loglevel=3 quiet
+    initrd /@/boot/initramfs-linux-cachyos.img
+}
 
 menuentry "NixOS 25.11" {
     insmod part_gpt
