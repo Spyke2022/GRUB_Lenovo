@@ -49,3 +49,18 @@ ORDEM DO MENU DO GRUB
   6. NixOS 25.11
 
 ==============================================================
+
+=== LICOES DO INCIDENTE 13/07/2026 ===
+Sintoma: grub-btrfs-snapper.service falhando (exit 126) e
+grub-mkconfig com "Operacao nao permitida" ao gravar grub.cfg.
+
+Causas e correcoes:
+1. /boot/grub/grub.cfg estava IMUTAVEL (chattr +i)
+   -> sudo chattr -i /boot/grub/grub.cfg
+   -> NAO reaplicar +i: quebra grub-mkconfig e grub-btrfs silenciosamente
+2. /etc/grub.d/41_snapshots-btrfs sem permissao de execucao
+   -> sudo chmod +x /etc/grub.d/41_snapshots-btrfs
+
+Verificacao:
+   sudo lsattr /boot/grub/grub.cfg   (nao pode ter "i")
+   ls -la /etc/grub.d/41_snapshots-btrfs   (precisa do "x")
