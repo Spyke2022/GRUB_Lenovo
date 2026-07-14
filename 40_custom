@@ -45,8 +45,7 @@ menuentry "CachyOS" --class gnu-linux --class gnu --class os {
 menuentry "NixOS 25.11" --class nixos --class gnu-linux --class gnu --class os {
     insmod part_gpt
     insmod fat
-    insmod ext2
+    insmod chain
     search --no-floppy --fs-uuid --set=root D8D9-D120
-    linux /EFI/nixos/h02zlysrch5fflcj3665nk53fx007c45-linux-6.12.87-bzImage.efi init=/nix/store/zw0akp3nfywks2xwixn3cp56jj65hgk0-nixos-system-nixos-25.11.10684.8fd9daa3db09/init root=UUID=9e054757-5096-4e05-a471-26731c8043bd loglevel=4
-    initrd /EFI/nixos/0arrhqdiakbmpgpcjwl98qkm5kg1fkx7-initrd-linux-6.12.87-initrd.efi
+    chainloader /EFI/systemd/systemd-bootx64.efi
 }
