@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Auto Keyboard Layout
+Exec=/usr/local/bin/kb-auto-layout.sh
+X-KDE-autostart-after=panel

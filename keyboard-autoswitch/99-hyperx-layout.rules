@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="03f0", ATTR{idProduct}=="058f", RUN+="/usr/local/bin/kb-auto-layout.sh"
+ACTION=="remove", SUBSYSTEM=="usb", ENV{PRODUCT}=="3f0/58f/*", RUN+="/usr/local/bin/kb-auto-layout.sh"
