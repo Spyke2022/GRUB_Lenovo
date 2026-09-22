@@ -64,3 +64,13 @@ Causas e correcoes:
 Verificacao:
    sudo lsattr /boot/grub/grub.cfg   (nao pode ter "i")
    ls -la /etc/grub.d/41_snapshots-btrfs   (precisa do "x")
+
+=== LICAO 22/09/2026: ENTRADAS DUPLICADAS NO GRUB ===
+Sintoma: todas as entradas do menu aparecem duas vezes.
+Causa: arquivo .bak EXECUTAVEL dentro de /etc/grub.d/
+(grub-mkconfig executa TODO arquivo executavel dessa pasta).
+Correcao:
+   sudo rm /etc/grub.d/40_custom.bak
+   sudo grub-mkconfig -o /boot/grub/grub.cfg
+Regra: backup de scripts do grub.d vai para OUTRA pasta
+(ex: /root/) ou sem bit de execucao (chmod -x).
