@@ -1,0 +1,10 @@
+[Unit]
+Description=Verifica ordem do GRUB e do UEFI
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/grub-order-check.sh
+
+[Install]
+WantedBy=multi-user.target

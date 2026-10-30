@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = grub
+Target = grub-btrfs
+Target = linux*
+
+[Action]
+Description = Verificando ordem do menu GRUB (Windows em 1o)...
+When = PostTransaction
+Exec = /usr/local/bin/grub-order-check.sh
